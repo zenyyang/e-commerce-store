@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import Container from "@/components/ui/container";
@@ -7,9 +9,8 @@ import NavbarActions from "@/components/navbar-actions";
 
 export const revalidate = 0;
 
-const Navbar = async () => {
+async function Navbar() {
   const categories = await getCategories();
-
   return (
     <div className="border-b">
       <Container>
@@ -23,6 +24,6 @@ const Navbar = async () => {
       </Container>
     </div>
   );
-};
+}
 
 export default Navbar;
