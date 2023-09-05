@@ -32,7 +32,7 @@ async function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
           <hr className="my-10" />
-          <ProductList title="Related Items" items={filteredProducts} />
+          <ProductList title="You might also like" items={filteredProducts} />
         </div>
       </Container>
     </div>

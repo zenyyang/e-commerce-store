@@ -1,7 +1,5 @@
 "use client";
 
-import { ShoppingCart } from "lucide-react";
-
 import { Product } from "@/types";
 import Currency from "@/components/ui/currency";
 import Button from "@/components/ui/button";
@@ -17,13 +15,15 @@ const Info: React.FC<InfoProps> = ({ data }) => {
     cart.addItem(data[0]);
   };
   return (
-    <div>
+    <div className="sm:pl-12 sm:pr-12 ">
       <h1 className="text-3xl font-bold text-gray-800">{data[0].name}</h1>
       <div className="mt-3 flex items-center justify-between">
         <p className="text-2xl text-gray-900">
           <Currency value={data[0].price} />
         </p>
       </div>
+      <hr className="my-4" />
+      <p className="sm:text-xl font-light text-lg"> {data[0].desc}</p>
       <hr className="my-4" />
       <div className="flex flex-col gap-y-6">
         <div className="flex items-center gap-x-4">
@@ -41,9 +41,11 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">
-        <Button onClick={onAddToCart} className="flex items-center gap-x-2">
+        <Button
+          onClick={onAddToCart}
+          className="flex items-center justify-center gap-x-2 font-normal w-full"
+        >
           Add to Cart
-          <ShoppingCart />
         </Button>
       </div>
     </div>
