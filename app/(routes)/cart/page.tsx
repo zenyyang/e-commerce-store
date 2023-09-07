@@ -22,6 +22,17 @@ const CartPage = () => {
     return null;
   }
 
+  const productIds = new Set(cart.items.map((item) => item.id));
+
+  const uniqueItems = cart.items.filter((item) => {
+    if (productIds.has(item.id)) {
+      productIds.delete(item.id); // remove to get first instance only
+      return true;
+    }
+
+    return false;
+  });
+
   return (
     <div className="bg-white">
       <Container>
@@ -33,7 +44,7 @@ const CartPage = () => {
                 <p className="text-neutral-500">No items added to cart.</p>
               )}
               <ul>
-                {cart.items.map((item) => (
+                {uniqueItems.map((item) => (
                   <CartItem key={item.id} data={item} />
                 ))}
               </ul>

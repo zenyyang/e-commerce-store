@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Expand, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import { Product } from "@/types";
 import IconButton from "@/components/ui/icon-button";
@@ -34,6 +35,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
     event.stopPropagation();
 
     cart.addItem(data);
+
+    toast.success("Item added to cart");
   };
 
   return (

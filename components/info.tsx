@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "react-hot-toast";
 
 import { Product } from "@/types";
 import Currency from "@/components/ui/currency";
@@ -13,6 +14,8 @@ const Info: React.FC<InfoProps> = ({ data }) => {
   const cart = useCart();
   const onAddToCart = () => {
     cart.addItem(data[0]);
+
+    toast.success("Item added to cart");
   };
   return (
     <div className="sm:pl-12 sm:pr-12 ">

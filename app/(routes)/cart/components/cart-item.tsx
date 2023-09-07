@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { X } from "lucide-react";
+import { Minus, Plus, X } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 import IconButton from "@/components/ui/icon-button";
 import Currency from "@/components/ui/currency";
@@ -18,6 +19,48 @@ const CartItem: React.FC<CartItemsProps> = ({ data }) => {
   const onRemove = () => {
     cart.removeItem(data.id);
   };
+
+  const onIncrement = () => {
+    cart.addItem(data);
+    toast.success("Cart Updated");
+  };
+
+  const onDecrement = () => {
+    const matchingIndexes: number[] = [];
+
+    // Find the indexes of matching items
+    cart.items.forEach((item, index) => {
+      if (item.id === data.id) {
+        matchingIndexes.push(index);
+      }
+    });
+
+    if (matchingIndexes.length > 0) {
+      const lastIndex = matchingIndexes.pop();
+
+      if (typeof lastIndex === "number") {
+        const updatedCart = [...cart.items];
+        updatedCart.splice(lastIndex, 1);
+
+        // Update the cart items
+        cart.setItem(updatedCart);
+      }
+    }
+  };
+
+  const countDuplicates = (productId: string) => {
+    let count = 0;
+    cart.items.forEach((item) => {
+      if (item.id === productId) {
+        count += 1;
+      }
+    });
+    return count;
+  };
+
+  // Count duplicates for the current product
+  let duplicateCount = countDuplicates(data.id);
+
   return (
     <li className="flex py-6 border-b">
       <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
@@ -42,7 +85,12 @@ const CartItem: React.FC<CartItemsProps> = ({ data }) => {
               {data.size.name}
             </p>
           </div>
-          <Currency value={data.price} />
+          <Currency value={Number(data.price)} />
+          <div className="flex items-center mt-5 gap-5">
+            <IconButton onClick={onDecrement} icon={<Minus size={15} />} />
+            <p> {duplicateCount}</p>
+            <IconButton onClick={onIncrement} icon={<Plus size={15} />} />
+          </div>
         </div>
       </div>
     </li>

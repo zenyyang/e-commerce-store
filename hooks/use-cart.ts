@@ -9,6 +9,8 @@ interface CartStore {
   addItem: (item: Product) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
+  decrementItem: (id: string) => void;
+  setItem: (items: Product[]) => void;
 }
 
 const useCart = create(
@@ -16,14 +18,14 @@ const useCart = create(
     items: [],
     addItem: (item: Product) => {
       const currentItems = get().items;
+      console.log(currentItems)
       const existingItem = currentItems.find((i) => i.id === item.id);
 
-      if (existingItem) {
-        return toast("Item already in cart")
-      }
+      // if (existingItem) {
+      //   return toast("Item already in cart")
+      // }
 
       set({ items: [...get().items, item] });
-      toast.success("Item added to cart")
     },
     removeItem: (id: string) => {
       set({items: [...get().items.filter((item) => item.id !== id)]})
@@ -31,7 +33,20 @@ const useCart = create(
     },
     removeAll: () => {
       set({items: []})
-    }
+    },
+    decrementItem: (id: string) => {
+      const currentItems = get().items;
+      const existingItem = currentItems.find((i) => i.id === id);
+
+      if (existingItem) {
+        set({items: [...get().items.filter((item) => item.id !== id)]})
+        toast.success("Item removed from cart")
+      }
+    },
+    setItem: (newItems: Product[]) => {
+      set({ items: newItems });
+      toast.success("Cart items updated");
+    },
   }), {
     name: "cart-storage",
     storage: createJSONStorage(() => localStorage)

@@ -12,6 +12,7 @@ import useCart from "@/hooks/use-cart";
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
+  const cart = useCart();
   const removeAll = useCart((state) => state.removeAll);
 
   useEffect(() => {
@@ -29,11 +30,13 @@ const Summary = () => {
     return total + Number(item.price);
   }, 0);
 
+  const productIds = items.map((item) => item.id);
+
   const onCheckout = async () => {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
       {
-        productId: items.map((item) => item.id),
+        product: items,
       }
     );
 
