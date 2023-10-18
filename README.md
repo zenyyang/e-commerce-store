@@ -1,22 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Virlia Ecommerce
 
-## Getting Started
+[Virlia-Ecommerce](https://virlia-store.vercel.app) is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It is a prototype E-Commerce website for any seller that want to have their own ecommerce website. It has the most basic features of an ecommerce website such as: product listing, product detail, cart, checkout, payment, order history, etc. It pulls its data from the main dashboard using APIs. </br> </br>
+![Screenshot of](https://scontent.fpnh10-1.fna.fbcdn.net/v/t1.15752-9/376359060_1043236027035539_7620079271424864732_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeG8BliekjlSLkaYGaNok3Vye-1OAZWV0ut77U4BlZXS60hFklsJeLCjKu0CoesT7ITQ0KDSTZXHaxuvJHITP9z-&_nc_ohc=el6WITQSUHAAX_F5BCz&_nc_ht=scontent.fpnh10-1.fna&oh=03_AdQSQNTIBljZaszI54_wZvBWlIWy89lfpltt_IezL2zanA&oe=65262D61)
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+[Next.js](https://nextjs.org/) - A React framework with hybrid static & server rendering, and route pre-fetching, etc. <br />
+[Tailwind CSS](https://tailwindcss.com/) - is a utility-first CSS framework that allows you to rapidly build modern websites without ever leaving your HTML <br />
+[Shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source. <br />
+
+## Project Structure
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+$PROJECT_ROOT 
+│   # Page files
+├── app
+│    ├── 
+        │── routes
+        │── layout.tsx
+├── components
+│   # Non-react modules
+├── lib
+│   # Static files for images and 3d model file
+└── public
+```
 
 ## Learn More
 
